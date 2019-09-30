@@ -36,6 +36,7 @@ export class AuthService {
           data,  { headers: headers }
     ).pipe(
       tap(token => {
+        console.log(token);
         this.storage.setItem('token', token)
         .then(
           () => {
