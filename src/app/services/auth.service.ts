@@ -15,9 +15,25 @@ export class AuthService {
     private storage: NativeStorage,
     private env: EnvService,
   ) { }
-  login(email: String, password: String) {
-    return this.http.post(this.env.API_URL + 'auth/login',
-      {email: email, password: password}
+  login(p_email: String, p_password: String) {
+    console.log(p_email);
+    console.log(p_password);
+    console.log(this.env.API_URL + '/login');
+
+    let data = {
+      "email": p_email,
+      "password": p_password
+    };
+
+    let headers = new HttpHeaders();
+    headers.append('Access-Control-Allow-Origin' , '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+    headers.append('Content-Type', 'application/json')
+
+    let paramData = {params: data};
+
+    return this.http.post(this.env.API_URL + '/login',
+          data,  { headers: headers }
     ).pipe(
       tap(token => {
         this.storage.setItem('token', token)
