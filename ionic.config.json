@@ -1,5 +1,7 @@
 {
   "name": "AppContato",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
